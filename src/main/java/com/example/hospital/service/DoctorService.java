@@ -1,0 +1,32 @@
+package com.example.hospital.service;
+
+import com.example.hospital.entity.Patient;
+import com.example.hospital.entity.Prescription;
+
+import java.util.Date;
+import java.util.List;
+
+
+public interface DoctorService {
+    String getTreatmentHistory(String patientId);//获取治疗历史
+
+    boolean setTreatmentHistory(String patientId,String treatmentHistory);//添加治疗历史
+
+    List<Prescription> getPrescription(String patientId);//获取处方信息
+
+    Integer setPrescription(String DoctorId,String patientId,String operation,String medicineNotes);//开处方
+
+    Patient getPatientMessage(String patientId);//获取病人详细信息
+
+    void setConditionReport(String patientId,String date,String conditionReport);//添加病情报告
+
+    void setDiagnosis(String patientId,String date,String diagnosis);//添加电子诊断书
+
+    void setWardRoundRecord(String patientId,String date,String WardRoundRecord);//添加查房记录
+
+    String getConditionReport(String patientId, String date);//获取病情报告
+
+    String getWardRoundRecord(String patientId,String date);//查房记录
+
+    String getDiagnosis(String patientId,String date);//获取电子诊断书
+}

@@ -16,7 +16,10 @@ public class ShiroConfigration {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
 
-        Map<String,String> map =new HashMap<String, String>();
+        Map<String,String> map = new HashMap<>();
+        map.put("/login","anon");
+
+        map.put("/**","authc");
 
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
@@ -26,11 +29,11 @@ public class ShiroConfigration {
     @Bean
     public DefaultWebSecurityManager getDefaultWebSecurityManager(UserRealm realm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+        defaultWebSecurityManager.setRealm(realm);
         return defaultWebSecurityManager;
     }
     @Bean
     public UserRealm getRealm(){
-        UserRealm userRealm = new UserRealm();
-        return userRealm;
+        return new UserRealm();
     }
 }

@@ -4,23 +4,38 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 public class User {
     @TableId
-    public Integer id;
-    public String password;
+    String userId;
+    String userPassword;
+    String userStatus;
 
 
-    public Integer getId() {
-        return id;
+   public String getUserStatus() {
+        return userStatus;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public User(String userID, String password) {
+        this.userId = userID;
+        this.userPassword = password;
+        userStatus ="患者";
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 }
