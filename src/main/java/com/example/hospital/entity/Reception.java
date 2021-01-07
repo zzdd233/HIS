@@ -1,9 +1,15 @@
 package com.example.hospital.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 public class Reception {//前台
+    @TableId
     String patientId;
+    @TableId
     String bedId;
+    @TableId
     String costId;
+    @TableId
     String prescriptionId;//电子处方ID
 
     public void setPatientId(String patientId) {

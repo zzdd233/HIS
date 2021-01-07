@@ -1,7 +1,9 @@
 package com.example.hospital.entity;
 
-public class Bed {//病床
+import com.baomidou.mybatisplus.annotation.TableId;
 
+public class Bed {//病床
+    @TableId
     String bedId;
     String patientId;
     String inDate;//病人入住日期

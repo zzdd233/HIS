@@ -1,11 +1,16 @@
 package com.example.hospital.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
-public class Cost {
+import javax.annotation.processing.Generated;
 
+public class Cost {
+    @TableId(type = IdType.AUTO)
     String costId;
+    @TableId
     String prescriptionId;
+    @TableId
     String patientId;
     Integer allCost;
     String detailedCost;

@@ -4,40 +4,40 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 public class Nurse {
     @TableId
-    String NurseId;
-    String NurseName;
-    Integer NurseAge;
-    String NurseContact;
+    String nurseId;
+    String nurseName;
+    Integer nurseAge;
+    String nurseContact;
 
     public void setNurseId(String nurseId) {
-        NurseId = nurseId;
+        this.nurseId = nurseId;
     }
 
     public void setNurseName(String nurseName) {
-        NurseName = nurseName;
+        this.nurseName = nurseName;
     }
 
     public void setNurseAge(Integer nurseAge) {
-        NurseAge = nurseAge;
+        this.nurseAge = nurseAge;
     }
 
     public void setNurseContact(String nurseContact) {
-        NurseContact = nurseContact;
+        this.nurseContact = nurseContact;
     }
 
     public String getNurseId() {
-        return NurseId;
+        return nurseId;
     }
 
     public String getNurseName() {
-        return NurseName;
+        return nurseName;
     }
 
     public Integer getNurseAge() {
-        return NurseAge;
+        return nurseAge;
     }
 
     public String getNurseContact() {
-        return NurseContact;
+        return nurseContact;
     }
 }

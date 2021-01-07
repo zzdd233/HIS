@@ -49,18 +49,18 @@ public class doctorController {
     }
 
     @RequestMapping("/setConditionReport")//添加病情报告
-    public void setConditionReport(String patientId,String date,String conditionReport){
-        doctorService.setConditionReport(patientId,date,conditionReport);
+    public boolean setConditionReport(String patientId,String date,String conditionReport){
+        return doctorService.setConditionReport(patientId,date,conditionReport);
     }
 
     @RequestMapping("/setDiagnosis")//添加电子诊断书
-    public void setDiagnosis(String patientId,String date,String diagnosis){
-        doctorService.setDiagnosis(patientId,date,diagnosis);
+    public boolean setDiagnosis(String patientId,String date,String diagnosis){
+        return doctorService.setDiagnosis(patientId,date,diagnosis);
     }
 
     @RequestMapping("/setWardRoundRecord")//添加查房记录
-    public void setWardRoundRecord(String patientId,String date,String wardRoundRecord){
-        doctorService.setWardRoundRecord(patientId,date,wardRoundRecord);
+    public boolean setWardRoundRecord(String patientId,String date,String wardRoundRecord){
+        return doctorService.setWardRoundRecord(patientId,date,wardRoundRecord);
     }
 
     @RequestMapping("/getConditionReport")//获取病情报告

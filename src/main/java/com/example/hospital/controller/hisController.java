@@ -34,6 +34,11 @@ public class hisController {
         return userService.register(new User(id,password));
     }
 
+    @RequestMapping("/registers")//注册
+    public Integer registers(User user){
+        return userService.register(user);
+    }
+
     @RequestMapping("/getUsers")
     public List<User> getUser(String id){
         return userMapper.selectAllUsers();

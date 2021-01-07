@@ -18,11 +18,11 @@ public interface DoctorService {
 
     Patient getPatientMessage(String patientId);//获取病人详细信息
 
-    void setConditionReport(String patientId,String date,String conditionReport);//添加病情报告
+    boolean setConditionReport(String patientId,String date,String conditionReport);//添加病情报告
 
-    void setDiagnosis(String patientId,String date,String diagnosis);//添加电子诊断书
+    boolean setDiagnosis(String patientId,String date,String diagnosis);//添加电子诊断书
 
-    void setWardRoundRecord(String patientId,String date,String WardRoundRecord);//添加查房记录
+    boolean setWardRoundRecord(String patientId,String date,String WardRoundRecord);//添加查房记录
 
     String getConditionReport(String patientId, String date);//获取病情报告
 

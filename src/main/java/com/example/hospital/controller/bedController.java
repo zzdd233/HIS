@@ -1,7 +1,9 @@
 package com.example.hospital.controller;
 
 
+import com.example.hospital.entity.Bed;
 import com.example.hospital.entity.BodyData;
+import com.example.hospital.mapper.BedMapper;
 import com.example.hospital.service.BedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ public class bedController {
     List<BodyData> bodyDataList;
     @Autowired
     BedService bedService;
+    @Autowired
+    BedMapper bedMapper;
 
 /*
     @RequestMapping("/getBodyDataList")//获取病人状况列表
@@ -43,5 +47,10 @@ public class bedController {
    @RequestMapping("getHistory")//获取患者日志
     public List<BodyData>  getHistory(String patientId){
         return bedService.getHistory(patientId);
+   }
+
+   @RequestMapping("/getBeds")
+    public List<Bed> getBeds(){
+        return bedMapper.getBeds();
    }
 }

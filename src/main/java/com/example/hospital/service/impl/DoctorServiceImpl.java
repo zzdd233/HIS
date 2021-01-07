@@ -45,40 +45,46 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void setConditionReport(String patientId, String date, String conditionReport) {
+    public boolean setConditionReport(String patientId, String date, String conditionReport) {
         try {
-            FileWriter fileWriter=new FileWriter("data/ConditionReport"+patientId+"_"+date+".txt",true);
+            FileWriter fileWriter=new FileWriter("data/conditionReport/"+patientId+"_"+date+".txt",true);
             fileWriter.write(conditionReport);
             fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void setDiagnosis(String patientId, String date,String diagnosis) {
+    public boolean setDiagnosis(String patientId, String date,String diagnosis) {
         FileWriter fileWriter;
         try {
-            fileWriter = new FileWriter("data/Diagnosis"+patientId+"_"+date+".txt",true);
+            fileWriter = new FileWriter("data/diagnosis/"+patientId+"_"+date+".txt",true);
             fileWriter.write(diagnosis);
             fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void setWardRoundRecord(String patientId, String date,String wardRoundRecord) {
+    public boolean setWardRoundRecord(String patientId, String date,String wardRoundRecord) {
         try {
-            FileWriter fileWriter=new FileWriter("data/WardRoundRecord"+patientId+"_"+date+".txt",true);
+            FileWriter fileWriter=new FileWriter("data/wardRoundRecord/"+patientId+"_"+date+".txt",true);
             fileWriter.write(wardRoundRecord);
             fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
@@ -86,7 +92,7 @@ public class DoctorServiceImpl implements DoctorService {
         BufferedReader bufferedInputStream;
         StringBuilder s =new StringBuilder();
         try {
-            bufferedInputStream = new BufferedReader(new FileReader("data/ConditionReport/"+patientId+"_"+date+".txt"));
+            bufferedInputStream = new BufferedReader(new FileReader("data/conditionReport/"+patientId+"_"+date+".txt"));
             String line = bufferedInputStream.readLine();
             while (line !=null){
                     s.append(line).append("\n");
@@ -103,7 +109,7 @@ public class DoctorServiceImpl implements DoctorService {
         BufferedReader bufferedInputStream;
         StringBuilder s =new StringBuilder();
         try {
-            bufferedInputStream = new BufferedReader(new FileReader("data/WardRoundRecord/"+patientId+"_"+date+".txt"));
+            bufferedInputStream = new BufferedReader(new FileReader("data/wardRoundRecord/"+patientId+"_"+date+".txt"));
             String line = bufferedInputStream.readLine();
             while (line !=null){
                 s.append(line).append("\n");
@@ -120,7 +126,7 @@ public class DoctorServiceImpl implements DoctorService {
         BufferedReader bufferedInputStream;
         StringBuilder s =new StringBuilder();
         try {
-            bufferedInputStream = new BufferedReader(new FileReader("data/Diagnosis/"+patientId+"_"+date+".txt"));
+            bufferedInputStream = new BufferedReader(new FileReader("data/diagnosis/"+patientId+"_"+date+".txt"));
             String line = bufferedInputStream.readLine();
             while (line !=null){
                 s.append(line).append("\n");
