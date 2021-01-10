@@ -1,9 +1,10 @@
 package com.example.hospital.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 public class Doctor {
-    @TableId
+    @TableId(type = IdType.AUTO)
     String doctorId;
     String doctorName;
     Integer doctorAge;

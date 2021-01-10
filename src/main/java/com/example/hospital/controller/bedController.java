@@ -44,12 +44,12 @@ public class bedController {
         return bedService.getMedicineUsingByBedId(bedId);
     }
 
-   @RequestMapping("getHistory")//获取患者日志
+   @RequestMapping("/getHistory")//获取患者日志
     public List<BodyData>  getHistory(String patientId){
         return bedService.getHistory(patientId);
    }
 
-   @RequestMapping("/getBeds")
+   @RequestMapping("/getBeds")//获取所有病床信息
     public List<Bed> getBeds(){
         return bedMapper.getBeds();
    }

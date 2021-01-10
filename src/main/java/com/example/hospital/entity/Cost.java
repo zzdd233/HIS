@@ -3,11 +3,9 @@ package com.example.hospital.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
-import javax.annotation.processing.Generated;
-
 public class Cost {
     @TableId(type = IdType.AUTO)
-    String costId;
+    Integer costId;
     @TableId
     String prescriptionId;
     @TableId
@@ -23,7 +21,7 @@ public class Cost {
         return patientId;
     }
 
-    public void setCostId(String costId) {
+    public void setCostId(Integer costId) {
         this.costId = costId;
     }
 
@@ -39,7 +37,7 @@ public class Cost {
         this.detailedCost = detailedCost;
     }
 
-    public String getCostId() {
+    public Integer getCostId() {
         return costId;
     }
 

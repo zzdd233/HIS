@@ -8,9 +8,9 @@ public class Reception {//前台
     @TableId
     String bedId;
     @TableId
-    String costId;
+    Integer costId;
     @TableId
-    String prescriptionId;//电子处方ID
+    Integer prescriptionId;//电子处方ID
 
     public void setPatientId(String patientId) {
         this.patientId = patientId;
@@ -20,11 +20,11 @@ public class Reception {//前台
         this.bedId = bedId;
     }
 
-    public void setCostId(String costId) {
+    public void setCostId(Integer costId) {
         this.costId = costId;
     }
 
-    public void setPrescriptionId(String prescriptionId) {
+    public void setPrescriptionId(Integer prescriptionId) {
         this.prescriptionId = prescriptionId;
     }
 
@@ -36,11 +36,11 @@ public class Reception {//前台
         return bedId;
     }
 
-    public String getCostId() {
+    public Integer getCostId() {
         return costId;
     }
 
-    public String getPrescriptionId() {
+    public Integer getPrescriptionId() {
         return prescriptionId;
     }
 }

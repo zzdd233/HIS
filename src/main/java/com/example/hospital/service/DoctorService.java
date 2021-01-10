@@ -1,9 +1,9 @@
 package com.example.hospital.service;
 
+import com.example.hospital.entity.pandm;
 import com.example.hospital.entity.Patient;
 import com.example.hospital.entity.Prescription;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -14,7 +14,8 @@ public interface DoctorService {
 
     List<Prescription> getPrescription(String patientId);//获取处方信息
 
-    Integer setPrescription(String DoctorId,String patientId,String operation,String medicineNotes);//开处方
+    //开新处方，最后一个参数不需要输入处方号，只需药物id和数量即可
+    Integer setPrescription(String DoctorId, String patientId, String operation, String medicineNotes, List<pandm> pandms);
 
     Patient getPatientMessage(String patientId);//获取病人详细信息
 
@@ -29,4 +30,10 @@ public interface DoctorService {
     String getWardRoundRecord(String patientId,String date);//查房记录
 
     String getDiagnosis(String patientId,String date);//获取电子诊断书
+
+    List<String>getAllConditionReport(String patientId);//获取病情报告目录
+
+    List<String>getAllWardRoundRecord(String patientId);//获取查房记录目录
+
+    List<String>getAllDiagnosis(String patientId);//获取电子诊断书目录
 }

@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 public interface PatientMapper extends BaseMapper<Patient> {
     @Select("select treatment_history from patient where patient_id=#{PatientId}")
     String getTreatmentHistoryByPatientId(String PatientId);
+
     @Update("update patient " +
-            "set treatment_history = concat(#{treatmentHistory},treatment_history）" +
+            "set treatment_history = #{treatmentHistory}" +
             "where patient_id=#{PatientId}")
     boolean setTreatmentHistory(String PatientId,String treatmentHistory);
 }

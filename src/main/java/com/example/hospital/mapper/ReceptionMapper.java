@@ -19,7 +19,7 @@ public interface ReceptionMapper extends BaseMapper<Reception> {
     String getBedIdByPatientId(String PatientId);//通过病人号获取病床号
 
     @Select("select cost_id from Reception where patient_id=#{PatientId}")
-    String getCostIdByPatientId(String PatientId);//通过病人号获取费用号
+    Integer getCostIdByPatientId(String PatientId);//通过病人号获取费用号
 
     @Select("select prescription_id from Reception where patient_id=#{PatientId}")
     String getPrescriptionIdByPatientId(String PatientId);//通过病人号获取处方号

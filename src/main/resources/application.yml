@@ -1,3 +1,5 @@
 mybatis-plus:
   config-location: classpath:mybatis/mabatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
+
+

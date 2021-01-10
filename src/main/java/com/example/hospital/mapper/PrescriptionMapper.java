@@ -13,6 +13,7 @@ import java.util.List;
 public interface PrescriptionMapper extends BaseMapper<Prescription> {
     @Select("select * from prescription where patient_id =#{patientId}")
     List<Prescription> getPrescriptionByPatientId(String patientId);
+
     @Select("select medicine_note from prescription where patient_id =#{patientId}")
     String getMedicineNote(String prescriptionId);
 }

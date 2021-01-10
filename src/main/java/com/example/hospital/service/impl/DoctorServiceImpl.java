@@ -1,15 +1,20 @@
 package com.example.hospital.service.impl;
 
+import com.example.hospital.entity.pandm;
 import com.example.hospital.entity.Patient;
 import com.example.hospital.entity.Prescription;
+import com.example.hospital.mapper.PAndMMapper;
 import com.example.hospital.mapper.PatientMapper;
 import com.example.hospital.mapper.PrescriptionMapper;
 import com.example.hospital.service.DoctorService;
-import com.example.hospital.service.PatientService;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +23,9 @@ public class DoctorServiceImpl implements DoctorService {
     PatientMapper patientMapper;
     @Autowired
     PrescriptionMapper prescriptionMapper;
+    @Autowired
+    PAndMMapper pAndMMapper;
+
     @Override
     public String getTreatmentHistory(String PatientId) {
         return patientMapper.getTreatmentHistoryByPatientId(PatientId);
@@ -34,9 +42,28 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Integer setPrescription(String DoctorId, String patientId, String operation, String medicineNotes) {
-        Prescription prescription=new Prescription(patientId,DoctorId,operation,medicineNotes);
-        return prescriptionMapper.insert(prescription);
+    public Integer setPrescription(String DoctorId, String patientId, String operation, String medicineNotes, List<pandm> pandmList ) {
+        int insert;
+      //  try {
+           // JSONArray jsonArray=new JSONArray(pandms);
+          //  List<pandm> pandmList=new ArrayList<>();
+           /* for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject=jsonArray.getJSONObject(i);
+                pandm p=new pandm();
+                p.setMedicineId(jsonObject.getString("medicineId"));
+               // p.setMedicineNum(jsonObject.getInt("medicineNum"));
+            }*/
+            Prescription prescription=new Prescription(patientId,DoctorId,operation,medicineNotes);
+             insert = prescriptionMapper.insert(prescription);
+            for (pandm pAndM : pandmList) {
+                pAndM.setPrescriptionId(prescription.getPrescriptionId());
+                pAndMMapper.insert(pAndM);
+            }
+       /* } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+
+        return insert;
     }
 
     @Override
@@ -47,7 +74,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public boolean setConditionReport(String patientId, String date, String conditionReport) {
         try {
-            FileWriter fileWriter=new FileWriter("data/conditionReport/"+patientId+"_"+date+".txt",true);
+            File dir=new File("data/conditionReport/"+patientId);
+            if(!dir.exists())
+                dir.mkdir();
+            File file=new File("data/conditionReport/"+patientId+"/"+date+".txt");
+            FileWriter fileWriter=new FileWriter(file);
             fileWriter.write(conditionReport);
             fileWriter.flush();
             fileWriter.close();
@@ -62,7 +93,11 @@ public class DoctorServiceImpl implements DoctorService {
     public boolean setDiagnosis(String patientId, String date,String diagnosis) {
         FileWriter fileWriter;
         try {
-            fileWriter = new FileWriter("data/diagnosis/"+patientId+"_"+date+".txt",true);
+            File dir=new File("data/diagnosis/"+patientId);
+            if(!dir.exists())
+                dir.mkdir();
+            File file=new File("data/diagnosis/"+patientId+"/"+date+".txt");
+            fileWriter = new FileWriter(file);
             fileWriter.write(diagnosis);
             fileWriter.flush();
             fileWriter.close();
@@ -76,7 +111,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public boolean setWardRoundRecord(String patientId, String date,String wardRoundRecord) {
         try {
-            FileWriter fileWriter=new FileWriter("data/wardRoundRecord/"+patientId+"_"+date+".txt",true);
+            File dir=new File("data/wardRoundRecord/"+patientId);
+            if(!dir.exists())
+                dir.mkdir();
+            File file=new File("data/wardRoundRecord/"+patientId+"/"+date+".txt");
+            FileWriter fileWriter=new FileWriter(file);
             fileWriter.write(wardRoundRecord);
             fileWriter.flush();
             fileWriter.close();
@@ -92,7 +131,8 @@ public class DoctorServiceImpl implements DoctorService {
         BufferedReader bufferedInputStream;
         StringBuilder s =new StringBuilder();
         try {
-            bufferedInputStream = new BufferedReader(new FileReader("data/conditionReport/"+patientId+"_"+date+".txt"));
+            File file=new File("data/conditionReport/"+patientId+"/"+date+".txt");
+            bufferedInputStream = new BufferedReader(new FileReader(file));
             String line = bufferedInputStream.readLine();
             while (line !=null){
                     s.append(line).append("\n");
@@ -109,7 +149,8 @@ public class DoctorServiceImpl implements DoctorService {
         BufferedReader bufferedInputStream;
         StringBuilder s =new StringBuilder();
         try {
-            bufferedInputStream = new BufferedReader(new FileReader("data/wardRoundRecord/"+patientId+"_"+date+".txt"));
+            File file=new File("data/wardRoundRecord/"+patientId+"/"+date+".txt");
+            bufferedInputStream = new BufferedReader(new FileReader(file));
             String line = bufferedInputStream.readLine();
             while (line !=null){
                 s.append(line).append("\n");
@@ -126,7 +167,8 @@ public class DoctorServiceImpl implements DoctorService {
         BufferedReader bufferedInputStream;
         StringBuilder s =new StringBuilder();
         try {
-            bufferedInputStream = new BufferedReader(new FileReader("data/diagnosis/"+patientId+"_"+date+".txt"));
+            File file=new File("data/diagnosis/"+patientId+"/"+date+".txt");
+            bufferedInputStream = new BufferedReader(new FileReader(file));
             String line = bufferedInputStream.readLine();
             while (line !=null){
                 s.append(line).append("\n");
@@ -136,5 +178,44 @@ public class DoctorServiceImpl implements DoctorService {
             e.printStackTrace();
         }
         return s.toString();
+    }
+
+    @Override
+    public List<String> getAllConditionReport(String patientId) {
+        File file=new File("data/conditionReport/"+patientId);
+        File[] files=file.listFiles();
+        List<String>fileName=new ArrayList<>();
+        if (files != null) {
+            for (File value : files) {
+                fileName.add(value.getName());
+            }
+        }
+        return fileName;
+    }
+
+    @Override
+    public List<String> getAllWardRoundRecord(String patientId) {
+        File file=new File("data/wardRoundRecord/"+patientId);
+        File[] files=file.listFiles();
+        List<String>fileName=new ArrayList<>();
+        if (files != null) {
+            for (File value : files) {
+                fileName.add(value.getName());
+            }
+        }
+        return fileName;
+    }
+
+    @Override
+    public List<String> getAllDiagnosis(String patientId) {
+        File file=new File("data/diagnosis/"+patientId);
+        File[] files=file.listFiles();
+        List<String>fileName=new ArrayList<>();
+        if (files != null) {
+            for (File value : files) {
+                fileName.add(value.getName());
+            }
+        }
+        return fileName;
     }
 }

@@ -2,12 +2,12 @@ package com.example.hospital.service.impl;
 
 import com.example.hospital.entity.BodyData;
 import com.example.hospital.entity.Medicine;
+import com.example.hospital.mapper.MedicineMapper;
 import com.example.hospital.mapper.PAndMMapper;
 import com.example.hospital.mapper.PrescriptionMapper;
 import com.example.hospital.mapper.ReceptionMapper;
 import com.example.hospital.service.BedService;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,8 @@ public class BedServiceImpl implements BedService {
     ReceptionMapper receptionMapper;
     @Autowired
     PAndMMapper pAndMMapper;
+    @Autowired
+    MedicineMapper medicineMapper;
 
     @Override
     @JsonBackReference
@@ -68,7 +70,11 @@ public class BedServiceImpl implements BedService {
     @Override
     public String getMedicineUsingByBedId(String bedId) {
         String prescriptionId = receptionMapper.getPrescriptionIdByBedId(bedId);
-        List<Medicine> medicineList=pAndMMapper.getMedicineById(prescriptionId);
+        List<String> medicineIdList=pAndMMapper.getMedicineIdByPrescriptionId(prescriptionId);
+        List<Medicine> medicineList=new ArrayList<>();
+        for (String medicineId : medicineIdList) {
+            medicineList.add(medicineMapper.selectById(medicineId));
+        }
         StringBuilder task= new StringBuilder();
         for (Medicine medicine : medicineList) {
             task.append(medicine).append("\n");

@@ -1,9 +1,10 @@
 package com.example.hospital.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 public class User {
-    @TableId
+    @TableId(type = IdType.AUTO)
     String userId;
     String userPassword;
     String userStatus;
@@ -15,6 +16,13 @@ public class User {
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public User() {
+    }
+
+    public User(String userId) {
+        this.userId = userId;
     }
 
     public User(String userID, String password) {

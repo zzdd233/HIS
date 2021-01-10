@@ -4,9 +4,9 @@ package com.example.hospital.controller;
 import com.example.hospital.entity.User;
 import com.example.hospital.mapper.UserMapper;
 import com.example.hospital.service.UserService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -19,8 +19,8 @@ public class hisController {
     @Autowired
     UserMapper userMapper;
 
-    @RequestMapping("/login")//登录
-    public Integer login(String id,String password) {
+    @PostMapping("/login")//登录
+    public Integer login(String id, String password) {
         return userService.login(new User(id,password));
     }
 
@@ -30,7 +30,7 @@ public class hisController {
     }
 
     @RequestMapping("/register")//注册
-    public Integer register(String id,String password){
+    public Integer register(String id, String password){
         return userService.register(new User(id,password));
     }
 
@@ -40,7 +40,13 @@ public class hisController {
     }
 
     @RequestMapping("/getUsers")
-    public List<User> getUser(String id){
+    public List<User> getUser(){
         return userMapper.selectAllUsers();
+    }
+
+    @PostMapping(path = "/setUsers")
+    public List<User> setUsers(@RequestParam String s,@RequestBody List<User> userList){
+       System.out.println(s);
+        return userList;
     }
 }

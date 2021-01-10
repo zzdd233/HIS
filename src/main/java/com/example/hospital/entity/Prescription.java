@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 public class Prescription {//处方
     @TableId(type = IdType.AUTO)
-    String prescriptionId;
+    Integer prescriptionId;
     String patientId;
     String doctorId;
     String operation;//手术
@@ -21,7 +21,7 @@ public class Prescription {//处方
         this.medicineNotes = medicineNotes;
     }
 
-    public void setPrescriptionId(String prescriptionId) {
+    public void setPrescriptionId(Integer prescriptionId) {
         this.prescriptionId = prescriptionId;
     }
 
@@ -41,7 +41,7 @@ public class Prescription {//处方
         this.medicineNotes = medicineNotes;
     }
 
-    public String getPrescriptionId() {
+    public Integer getPrescriptionId() {
         return prescriptionId;
     }
 

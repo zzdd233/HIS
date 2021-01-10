@@ -5,7 +5,6 @@ import com.example.hospital.entity.Bed;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public interface BedMapper extends BaseMapper<Bed> {
     @Select("update bed " +
             "set patient_id = null,in_date=null " +
             "where bed_id =#{bedId}")
-    void leaveBed(String bedId);//病人出院
+    void leaveBed(String  bedId);//病人出院
 
     @Select("select * from bed")
     List<Bed> getBeds();//获取所有病床信息

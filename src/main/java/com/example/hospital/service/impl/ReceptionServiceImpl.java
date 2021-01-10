@@ -9,9 +9,6 @@ import com.example.hospital.service.ReceptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 @Service
 public class ReceptionServiceImpl implements ReceptionService {
     @Autowired
@@ -27,7 +24,7 @@ public class ReceptionServiceImpl implements ReceptionService {
 
     @Override
     public Integer setCost(String patientId, String costDetail, Integer allCost) {
-        String costId=receptionMapper.getCostIdByPatientId(patientId);
+        Integer costId=receptionMapper.getCostIdByPatientId(patientId);
         String prescriptionId=receptionMapper.getPrescriptionIdByPatientId(patientId);
 
         Cost cost=new Cost();
@@ -45,9 +42,9 @@ public class ReceptionServiceImpl implements ReceptionService {
     }
 
     @Override
-    public Integer setBed(String bedId, String patientId,String inDate) {
+    public Integer setBed(String bedId, String patientId, String inDate) {
         Bed bed1=bedMapper.selectById(bedId);
-        if(bed1.getPatientId().isEmpty()){
+        if(bed1.getPatientId()==null){
             Bed bed=new Bed();
             bed.setBedId(bedId);
             bed.setBedCost(bed1.getBedCost());
@@ -58,6 +55,7 @@ public class ReceptionServiceImpl implements ReceptionService {
         }
         return 0;
     }
+
 
     @Override
     public boolean leaveBed(String bedId, String patientId) {
@@ -75,7 +73,7 @@ public class ReceptionServiceImpl implements ReceptionService {
     }
 
     @Override
-    public Integer insertNurser(Nurse nurse) {
+    public Integer insertNurse(Nurse nurse) {
         return nurseMapper.insert(nurse);
     }
 }
