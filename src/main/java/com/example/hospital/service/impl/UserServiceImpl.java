@@ -1,6 +1,8 @@
 package com.example.hospital.service.impl;
 
+import com.example.hospital.entity.Cost;
 import com.example.hospital.entity.User;
+import com.example.hospital.mapper.CostMapper;
 import com.example.hospital.mapper.UserMapper;
 import com.example.hospital.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    CostMapper costMapper;
+
     @Override
     public Integer login(User user) {
         Subject subject= SecurityUtils.getSubject();
@@ -43,6 +48,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer register(User user) {
+        //添加cost
+        Cost cost=new Cost();
+        cost.setPatientId(user.getUserId());
+        costMapper.insert(cost);
         return userMapper.insert(user);
     }
 }

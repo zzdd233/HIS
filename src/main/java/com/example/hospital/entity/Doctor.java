@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 public class Doctor {
-    @TableId(type = IdType.AUTO)
+    @TableId
     String doctorId;
     String doctorName;
     Integer doctorAge;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 public class User {
-    @TableId(type = IdType.AUTO)
+    @TableId
     String userId;
     String userPassword;
     String userStatus;

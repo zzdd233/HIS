@@ -14,6 +14,6 @@ public interface PrescriptionMapper extends BaseMapper<Prescription> {
     @Select("select * from prescription where patient_id =#{patientId}")
     List<Prescription> getPrescriptionByPatientId(String patientId);
 
-    @Select("select medicine_note from prescription where patient_id =#{patientId}")
+    @Select("select medicine_notes from prescription where patient_id =#{patientId}")
     String getMedicineNote(String prescriptionId);
 }

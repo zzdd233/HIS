@@ -22,15 +22,15 @@ public class bedController {
     @Autowired
     BedMapper bedMapper;
 
-/*
-    @RequestMapping("/getBodyDataList")//获取病人状况列表
-    public List<BodyData> getBodyDataList(){
+
+    @RequestMapping("/getBodyDataList")//获取病人状况列表,返回num个数据
+    public List<BodyData> getBodyDataList(Integer num){
         bodyDataList.clear();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < num; i++) {
             bodyDataList.add(bedService.getBodyData());
         }
         return bodyDataList;
-    }*/
+    }
 
     @RequestMapping("/getSingleBodyData")//获取单个病人身体状况，并写入患者日志
     public BodyData getSingleBodyData(String patientId) {

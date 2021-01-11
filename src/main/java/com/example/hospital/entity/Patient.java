@@ -4,15 +4,40 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 public class Patient {
-    @TableId(type = IdType.AUTO)
+    @TableId
     String patientId;//医保卡号
     String patientName;
     Integer patientAge;
+    String patientSex;
     String patientAddress;//病人家庭地址
     String patientContact;//病人联系方式
     String treatmentHistory;//历史治疗
-
     String remarks;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public void setPatientSex(String patientSex) {
+        this.patientSex = patientSex;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public String getPatientSex() {
+        return patientSex;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+
 
     public void setMedicalInsurance(String medicalInsurance) {
         this.patientId = medicalInsurance;
@@ -39,9 +64,7 @@ public class Patient {
     }
 
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
+
 
     public String getMedicalInsurance() {
         return patientId;
@@ -68,7 +91,5 @@ public class Patient {
     }
 
 
-    public String getRemarks() {
-        return remarks;
-    }
+
 }

@@ -20,6 +20,10 @@ public class PatientServiceImpl implements PatientService {
     PAndMMapper pAndMMapper;
     @Autowired
     MedicineMapper medicineMapper;
+    @Autowired
+    PrescriptionMapper prescriptionMapper;
+    @Autowired
+    ReceptionMapper receptionMapper;
 
     @Override
     public Integer getCost(String patientId) {
@@ -27,12 +31,15 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean payCost() {
-        return true;
+    public Integer payCost() {
+        String userId = (String) SecurityUtils.getSubject().getPrincipal();
+        Integer costId=receptionMapper.getCostIdByPatientId(userId);
+        Cost cost =costMapper.selectById(costId);
+        cost.setAllCost(0);
+        return costMapper.updateById(cost);
     }
 
-    @Autowired
-    PrescriptionMapper prescriptionMapper;
+
     @Override
     public List<Prescription> getPrescription(String patientId) {
         return prescriptionMapper.getPrescriptionByPatientId(patientId);

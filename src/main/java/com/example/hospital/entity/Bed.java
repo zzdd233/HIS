@@ -8,15 +8,8 @@ public class Bed {//病床
     String patientId;
     String inDate;//病人入住日期
     Integer bedCost;//病床费用
-    Integer bedNum;
 
-    public void setBedNum(Integer bedNum) {
-        this.bedNum = bedNum;
-    }
 
-    public Integer getBedNum() {
-        return bedNum;
-    }
 
     public void setBedId(String bedId) {
         this.bedId = bedId;

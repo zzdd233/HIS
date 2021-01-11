@@ -48,7 +48,6 @@ public class ReceptionServiceImpl implements ReceptionService {
             Bed bed=new Bed();
             bed.setBedId(bedId);
             bed.setBedCost(bed1.getBedCost());
-            bed.setBedNum(bed1.getBedNum());
             bed.setInDate(inDate);
             bed.setPatientId(patientId);
             return bedMapper.updateById(bed);

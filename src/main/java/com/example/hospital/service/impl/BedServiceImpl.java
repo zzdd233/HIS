@@ -77,7 +77,8 @@ public class BedServiceImpl implements BedService {
         }
         StringBuilder task= new StringBuilder();
         for (Medicine medicine : medicineList) {
-            task.append(medicine).append("\n");
+            task.append(medicine.getMedicineId()).append(":");
+            task.append(medicine.getMedicineUsing()).append("\n");
         }
         return task+"备注："+prescriptionMapper.getMedicineNote(prescriptionId);
     }
