@@ -72,10 +72,7 @@ public class doctorController {
         return doctorService.setPrescription(doctorId,patientId,operation,medicineNotes, pandmList);
     }
 
-    @PostMapping("/setPAndM")
-    public List<pandm> setPAndM(@RequestBody List<pandm>  pandmList){
-        return pandmList;
-    }
+
 
     @RequestMapping("/getPatientMessage")//获取病人详细信息，包括个人信息和治疗历史
     public Patient getPatientMessage(String patientId){
