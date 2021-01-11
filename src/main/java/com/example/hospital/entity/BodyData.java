@@ -5,14 +5,18 @@ import org.springframework.boot.jackson.JsonComponent;
 
 @JsonComponent
 public class BodyData {//身体状况
+    public String patientName;//患者姓名
     public Integer heartbeat;//心跳
     public Double temperature;//体温
     public Integer systolicPressure;//收缩压
     public Integer diastolicPressure;//舒张压
     public Double bloodOxygenContent;//血氧含量
-    //private Queue<BodyData> HistoryData;
+    //private Queue<BodyData> History
 
     public BodyData(){}
+
+//
+
 
     public BodyData(Integer heartbeat, Double temperature, Integer systolicPressure, Integer diastolicPressure, Double bloodOxygenContent) {
         this.heartbeat = heartbeat;
@@ -20,6 +24,23 @@ public class BodyData {//身体状况
         this.systolicPressure = systolicPressure;
         this.diastolicPressure = diastolicPressure;
         this.bloodOxygenContent = bloodOxygenContent;
+    }
+
+    public BodyData(String patientName , Integer heartbeat, Double temperature, Integer systolicPressure, Integer diastolicPressure, Double bloodOxygenContent) {
+        this.patientName = patientName;
+        this.heartbeat = heartbeat;
+        this.temperature = temperature;
+        this.systolicPressure = systolicPressure;
+        this.diastolicPressure = diastolicPressure;
+        this.bloodOxygenContent = bloodOxygenContent;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public String getPatientName() {
+        return patientName;
     }
 
     public void setDiastolicPressure(Integer diastolicPressure) {

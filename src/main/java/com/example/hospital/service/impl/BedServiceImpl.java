@@ -88,6 +88,7 @@ public class BedServiceImpl implements BedService {
 
         try {
             JSONObject jsonObject=new JSONObject();
+            jsonObject.put("patientName",bodyData.getPatientName());
             jsonObject.put("heartbeat",bodyData.getHeartbeat());
             jsonObject.put("temperature",bodyData.getTemperature());
             jsonObject.put("systolicPressure",bodyData.getSystolicPressure());
@@ -115,13 +116,14 @@ public class BedServiceImpl implements BedService {
             while (line !=null){
                 jsonObject=new JSONObject(line);
 
+                String patientName=jsonObject.getString("patientName");//患者姓名
                 Integer heartbeat=jsonObject.getInt("heartbeat");//心跳
                 Double temperature=jsonObject.getDouble("temperature");//体温
                 Integer systolicPressure=jsonObject.getInt("systolicPressure");//收缩压
                 Integer diastolicPressure=jsonObject.getInt("diastolicPressure");//舒张压
                 Double bloodOxygenContent=jsonObject.getDouble("bloodOxygenContent");//血氧含量
 
-                BodyData bodyData=new BodyData(heartbeat,temperature,systolicPressure,diastolicPressure,bloodOxygenContent);
+                BodyData bodyData=new BodyData(patientName,heartbeat,temperature,systolicPressure,diastolicPressure,bloodOxygenContent);
                 bodyDataList.add(bodyData);
                 line =bufferedInputStream.readLine();
             }
