@@ -7,10 +7,17 @@ import com.example.hospital.entity.Prescription;
 import com.example.hospital.mapper.MedicineMapper;
 import com.example.hospital.mapper.ReceptionMapper;
 import com.example.hospital.service.DoctorService;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/doctor")
@@ -42,8 +49,26 @@ public class doctorController {
     }
 
     //开新处方，最后一个参数不需要输入处方号，只需药物id和数量即可
+   /* @PostMapping("/setPrescription")//开处方
+    public Integer setPrescription(@RequestParam("doctorId") String doctorId, @RequestParam("patientId") String patientId,@RequestParam("operation") String operation,@RequestParam("medicineNotes") String medicineNotes,@RequestParam("pandmList") List<pandm>  pandmList){
+        return doctorService.setPrescription(doctorId,patientId,operation,medicineNotes, pandmList);
+    }*/
     @PostMapping("/setPrescription")//开处方
-    public Integer setPrescription(@RequestParam String doctorId, @RequestParam String patientId,@RequestParam String operation,@RequestParam String medicineNotes,@RequestBody List<pandm>  pandmList){
+    public Integer setPrescription(@RequestBody HashMap<String,String> map) throws JSONException {
+        String doctorId=map.get("doctorId");
+        String patientId=map.get("patientId");
+        String operation=map.get("operation");
+        String medicineNotes=map.get("medicineNotes");
+        String pandm=map.get("pandmList");
+        JSONArray jsonArray=new JSONArray(pandm);
+
+        List<pandm> pandmList=new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                pandm p = new pandm();
+                p.setMedicineId(jsonObject.getString("medicineId"));
+                p.setMedicineNum(jsonObject.getInt("medicineNum"));
+            }
         return doctorService.setPrescription(doctorId,patientId,operation,medicineNotes, pandmList);
     }
 

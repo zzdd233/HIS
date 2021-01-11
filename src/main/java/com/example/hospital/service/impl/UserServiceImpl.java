@@ -48,6 +48,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer register(User user) {
+        if(user.getUserId().isEmpty()||user.getUserPassword().isEmpty())
+            return 0;
         //添加cost
         Cost cost=new Cost();
         cost.setPatientId(user.getUserId());
