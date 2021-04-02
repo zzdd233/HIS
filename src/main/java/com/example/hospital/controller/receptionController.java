@@ -56,5 +56,4 @@ public class receptionController {
         String userId = (String) SecurityUtils.getSubject().getPrincipal();
         return nurseMapper.selectById(userId);
     }
-
 }

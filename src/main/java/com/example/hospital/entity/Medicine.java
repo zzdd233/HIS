@@ -8,6 +8,7 @@ public class Medicine {
     Integer medicinePrice;
     String medicineUsing;//药物使用说明
 
+
     public void setMedicineId(String medicineId) {
         this.medicineId = medicineId;
     }

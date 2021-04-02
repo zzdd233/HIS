@@ -11,6 +11,7 @@ public class BodyData {//身体状况
     public Integer systolicPressure;//收缩压
     public Integer diastolicPressure;//舒张压
     public Double bloodOxygenContent;//血氧含量
+
     //private Queue<BodyData> History
 
     public BodyData(){}
@@ -24,6 +25,7 @@ public class BodyData {//身体状况
         this.systolicPressure = systolicPressure;
         this.diastolicPressure = diastolicPressure;
         this.bloodOxygenContent = bloodOxygenContent;
+
     }
 
     public BodyData(String patientName , Integer heartbeat, Double temperature, Integer systolicPressure, Integer diastolicPressure, Double bloodOxygenContent) {
@@ -33,7 +35,10 @@ public class BodyData {//身体状况
         this.systolicPressure = systolicPressure;
         this.diastolicPressure = diastolicPressure;
         this.bloodOxygenContent = bloodOxygenContent;
+
     }
+
+
 
     public void setPatientName(String patientName) {
         this.patientName = patientName;

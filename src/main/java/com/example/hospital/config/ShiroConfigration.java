@@ -18,7 +18,7 @@ public class ShiroConfigration {
 
         Map<String,String> map = new HashMap<>();
        // map.put("/login","anon");
-       // map.put("/**","authc");
+        //map.put("/**","authc");
 
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);

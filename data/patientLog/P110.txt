@@ -1,0 +1,3 @@
+{"patientName":"amiya","heartbeat":94,"temperature":36.7,"diastolicPressure":71,"systolicPressure":127,"bloodOxygenContent":0.98}
+{"patientName":"amiya","heartbeat":63,"temperature":36.5,"diastolicPressure":75,"systolicPressure":93,"bloodOxygenContent":0.98}
+{"patientName":"amiya","heartbeat":76,"temperature":37.2,"diastolicPressure":84,"systolicPressure":96,"bloodOxygenContent":0.97}

@@ -14,4 +14,7 @@ public interface PAndMMapper extends BaseMapper<pandm> {
     @Select("select medicine_id from pandm p where " +
             "prescription_id=#{prescriptionId} ")
     List<String> getMedicineIdByPrescriptionId(String prescriptionId);
+
+    @Select("select * from pandm where prescription_id = #{prescriptionId}")
+    List<pandm> getMedicineAndNum(String prescriptionId);
 }

@@ -85,7 +85,9 @@ public class BedServiceImpl implements BedService {
 
     @Override
     public void writeBodyData(String patientId, BodyData bodyData) {
-
+        File dir=new File("data/patientLog");
+        if(!dir.exists())
+            dir.mkdir();
         try {
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("patientName",bodyData.getPatientName());

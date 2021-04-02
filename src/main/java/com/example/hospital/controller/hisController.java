@@ -34,19 +34,9 @@ public class hisController {
         return userService.register(new User(id,password));
     }
 
-    @RequestMapping("/registers")//注册
-    public Integer registers(User user){
-        return userService.register(user);
-    }
-
     @RequestMapping("/getUsers")
     public List<User> getUser(){
         return userMapper.selectAllUsers();
     }
 
-    @PostMapping(path = "/setUsers")
-    public List<User> setUsers(@RequestParam String s,@RequestBody List<User> userList){
-       System.out.println(s);
-        return userList;
-    }
 }

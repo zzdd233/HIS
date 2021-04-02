@@ -1,0 +1,3 @@
+{"patientName":"李w","heartbeat":94,"temperature":37.1,"diastolicPressure":75,"systolicPressure":92,"bloodOxygenContent":0.99}
+{"patientName":"李w","heartbeat":61,"temperature":37.1,"diastolicPressure":74,"systolicPressure":120,"bloodOxygenContent":0.99}
+{"patientName":"李w","heartbeat":62,"temperature":37.1,"diastolicPressure":60,"systolicPressure":137,"bloodOxygenContent":1}

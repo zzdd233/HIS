@@ -3,6 +3,8 @@ package com.example.hospital.controller;
 import com.example.hospital.entity.Medicine;
 import com.example.hospital.entity.Patient;
 import com.example.hospital.entity.Prescription;
+import com.example.hospital.entity.pandm;
+import com.example.hospital.mapper.PAndMMapper;
 import com.example.hospital.mapper.PatientMapper;
 import com.example.hospital.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class patientController {
     PatientService patientService;
     @Autowired
     PatientMapper patientMapper;
+    @Autowired
+    PAndMMapper pAndMMapper;
 
     @RequestMapping("/getCost")//获取花费
     public Integer getCost(String patientId){
@@ -53,4 +57,8 @@ public class patientController {
         return patientMapper.updateById(patient);
     }
 
+    @RequestMapping("/getMedicineAndNum")//获取处方开药数量
+    public List<pandm>getMedicineAndNum(String prescriptionId){
+        return pAndMMapper.getMedicineAndNum(prescriptionId);
+    }
 }

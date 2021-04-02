@@ -1,0 +1,3 @@
+{"patientName":"赵丽","heartbeat":90,"temperature":36.6,"diastolicPressure":66,"systolicPressure":126,"bloodOxygenContent":1}
+{"patientName":"赵丽","heartbeat":67,"temperature":37.1,"diastolicPressure":84,"systolicPressure":117,"bloodOxygenContent":0.96}
+{"patientName":"赵丽","heartbeat":71,"temperature":37.3,"diastolicPressure":88,"systolicPressure":130,"bloodOxygenContent":0.96}

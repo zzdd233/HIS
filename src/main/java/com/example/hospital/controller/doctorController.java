@@ -48,11 +48,6 @@ public class doctorController {
         return doctorService.getPrescription(patientId);
     }
 
-    //开新处方，最后一个参数不需要输入处方号，只需药物id和数量即可
-   /* @PostMapping("/setPrescription")//开处方
-    public Integer setPrescription(@RequestParam("doctorId") String doctorId, @RequestParam("patientId") String patientId,@RequestParam("operation") String operation,@RequestParam("medicineNotes") String medicineNotes,@RequestParam("pandmList") List<pandm>  pandmList){
-        return doctorService.setPrescription(doctorId,patientId,operation,medicineNotes, pandmList);
-    }*/
     @PostMapping("/setPrescription")//开处方
     public Integer setPrescription(@RequestBody HashMap<String,String> map) throws JSONException {
         String doctorId=map.get("doctorId");
@@ -71,8 +66,6 @@ public class doctorController {
             }
         return doctorService.setPrescription(doctorId,patientId,operation,medicineNotes, pandmList);
     }
-
-
 
     @RequestMapping("/getPatientMessage")//获取病人详细信息，包括个人信息和治疗历史
     public Patient getPatientMessage(String patientId){
